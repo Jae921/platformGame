@@ -13,8 +13,14 @@ public class PlatformMap extends GameMap{
 	}
 	
 	private void addplayer() {
-		this.addGameObject(new player(1,50, 62.5, 105, 10, 1));
+		this.addGameObject(new player(1,50, 62.5, 105, 0, 1));
 		
+	}
+	
+	public void tick(){
+		for(Mover m: movers()){
+			m.move();
+		}
 	}
 	
 	@Override

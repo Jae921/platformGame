@@ -2,20 +2,38 @@ import java.awt.Image;
 
 public abstract class GameObject implements Mover {
 	public final static double gravity = 9.8;
-	private double health, width, height , x, y, speed, power, direction;
+	public final static double initial_speed = -10;
+	private double health, width, height , x, y, speed, power, direction, startTime;
 	private Image img;
 	private int level;
-	GameObject(double direction, double health, double width, double height , double speed, int level){
+	private boolean inAir;
+	GameObject(double direction, double health, double width, double height , double speed, 
+			int level){
 		this.health = health;
 		this.width = width;
 		this.height = height;
 		this.speed = speed;
 		this.level = level;
 		this.direction = direction;
+		this.inAir = inAir;
+		this.startTime = startTime;
 	}
 	
 	//Accessor----------------------------------
 	//health
+	public void set_inAir(boolean a){
+		this.inAir =a;
+	}
+	public boolean in_Air(){
+		return inAir;
+	}
+	public void setStartTime(double s){
+		startTime = s;
+	}
+	public double getStartTime(){
+		return startTime;
+	}
+	
 	public double health(){
 		return health;
 	}
@@ -30,6 +48,9 @@ public abstract class GameObject implements Mover {
 	//speed
 	public double speed(){
 		return speed;
+	}
+	public void set_speed(double s){
+		this.speed = s;
 	}
 	//level
 	public int level(){
@@ -66,12 +87,13 @@ public abstract class GameObject implements Mover {
 	
 	public void move(){
 		x+= speed*Math.cos(Math.toRadians(direction));
+		calcY(this.getStartTime());
 		check_location();
 	}
 	
-	
+	public abstract void calcY(double t);//jump
 	public abstract void set_image();
-	public abstract void check_location();
+	public abstract boolean check_location();
 	
 }
 

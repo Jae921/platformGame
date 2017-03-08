@@ -1,4 +1,6 @@
+import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
@@ -7,6 +9,7 @@ import javax.imageio.ImageIO;
 public class player extends GameObject{
 	protected frame f = new frame();
 	protected BufferedImage fra[] = f.getimages();
+	
 
 	
 	private int frames = 0;
@@ -33,13 +36,41 @@ public class player extends GameObject{
 	}
 
 	@Override
-	public void check_location() {
+	public boolean check_location() {
 		// TODO Auto-generated method stub
 		if(super.y()>580||super.y()<0){
 			super.set_y(580);
+			return true;
 		}
+		return false;
 	}
 
-	
+//	public void move(){
+//		super.move();
+//		calcY();
+//	}
+//	
+	public void calcY(double start) {
+		// TODO Auto-generated method stub
+//		if(check_location()){
+//			int t = 0;
+//			while(y()<580){
+//				set_y(y() + 0.5*super.gravity*t + super.initial_speed*t);
+//				t+=1;
+//			}
+//		}
+//	}
+		if (!super.in_Air()){
+			set_y(580);
+		}
+		else{
+			 double t = (System.currentTimeMillis() - start)/1000.0;
+			 set_y(y()+super.initial_speed*t + 0.8*super.gravity*Math.pow(t, 2));
+			 System.out.println(super.y());
+		}
+			
+
+		
+	}	
 
 }
