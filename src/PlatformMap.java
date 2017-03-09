@@ -3,26 +3,24 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+public class PlatformMap extends GameMap {
 
-public class PlatformMap extends GameMap{
-
-	
-	public PlatformMap(){
+	public PlatformMap() {
 		addplayer();
 		openBackgroundImage();
 	}
-	
+
 	private void addplayer() {
-		this.addGameObject(new player(1,50, 62.5, 105, 10, 1));
-		
+		this.addGameObject(new Player(1, 50, 62.5, 105, 10, 1, 5, 5));
+
 	}
-	
+
 	@Override
 	public void openBackgroundImage() {
 		// TODO Auto-generated method stub
 		try {
 			String mapName = "mario_background";
-			File u = new File("src/image/"+ mapName + ".png");
+			File u = new File("src/image/" + mapName + ".png");
 			super.backgroundImage = ImageIO.read(u);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
