@@ -31,7 +31,7 @@ public class panel extends JPanel {
 
 	private void makeGameMap() {
 		gm = new PlatformMap();
-		T = (GameObject) gm.movers().get(0);//player tank
+		T = gm.gameObjects().get(0);//player tank
 		//timer
 		t = new Timer(10, new ActionListener() {// fires off every 10 ms
 			@Override
@@ -46,7 +46,9 @@ public class panel extends JPanel {
 	
 	public void paintComponent(Graphics g){
 		g.drawImage(gm.backgroundImage, 0, 0,this.getWidth(),this.getHeight() ,null);
-		g.drawImage(T.img(), (int)T.x(), (int)T.y(),(int)T.width(),(int)T.height() ,null);//fix
+		for (GameObject go : gm.gameObjects()) {
+			go.draw(g);
+		}
 	}
 	
 	private void setUpKeyMappings() {

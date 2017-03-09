@@ -18,7 +18,7 @@ public class PlatformMap extends GameMap{
 	}
 	
 	public void tick(){
-		for(Mover m: movers()){
+		for(Mover m: this.gameObjects()){
 			m.move();
 		}
 	}

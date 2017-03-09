@@ -1,3 +1,4 @@
+import java.awt.Graphics;
 import java.awt.Image;
 
 public abstract class GameObject implements Mover {
@@ -94,6 +95,10 @@ public abstract class GameObject implements Mover {
 	public abstract void calcY(double t);//jump
 	public abstract void set_image();
 	public abstract boolean check_location();
+	
+	public void draw(Graphics g) {
+		g.drawImage(img, (int) x, (int) y, (int) width, (int) height, null);
+	}
 	
 }
 

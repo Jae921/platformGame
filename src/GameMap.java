@@ -4,20 +4,20 @@ import java.util.List;
 
 
 public abstract class GameMap {
-	private List<Mover> movers;
+	private List<GameObject> gameObjects;
 	Image backgroundImage;
 	
 	public GameMap() {
-		movers = new ArrayList();
+		gameObjects = new ArrayList();
 		openBackgroundImage();
 	}
 	
-	public List<Mover> movers(){
-		return movers;
+	public List<GameObject> gameObjects(){
+		return gameObjects;
 	}
 	
 	public void addGameObject(GameObject go) {
-		movers.add(go);
+		gameObjects.add(go);
 	}
 	
 	public abstract void openBackgroundImage();
